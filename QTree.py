@@ -1,3 +1,5 @@
+#most of the code in this file was taken from https://kpully.github.io/Quadtrees/
+
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
