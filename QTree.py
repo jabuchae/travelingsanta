@@ -7,7 +7,7 @@ class Point():
     def __init__(self, x, y, w, kid_id):
         self.x = x
         self.y = y
-        self.w = w
+        self.w = w #weight of the presents
         self.kid_id = kid_id
 
     def get_kid(self):
@@ -68,11 +68,11 @@ class QTree():
         plt.title("Quadtree")
         ax = fig.add_subplot(111)
         c = self.root.get_leaves()
-        print "Number of segments: %d" %len(c)
+        print("Number of segments: {}".format(len(c)))
         areas = set()
         for el in c:
             areas.add(el.width*el.height)
-        print "Minimum segment area: %.3f units" %min(areas)
+        print("Minimum segment area: {} units".format(min(areas)))
         for n in c:
             ax.add_patch(patches.Rectangle((n.x0, n.y0), n.width, n.height, fill=False))
         x = [point.x for point in self.points]
@@ -85,7 +85,12 @@ class QTree():
         return self.root.get_leaves()
 
 def recursive_subdivide(node, k):
-    if reduce((lambda x, y: x + y.w), node.points, 0) <= k:
+    
+    weight = 0
+    for p in node.points:
+        weight += p.w
+
+    if weight <= k:
         return
     
     w_ = float(node.width/2)

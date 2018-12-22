@@ -1,2 +1,4 @@
 results.txt
 QTree.pyc
+__pycache__/
+distances.pyc
